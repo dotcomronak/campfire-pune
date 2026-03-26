@@ -1,0 +1,1119 @@
+=<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campfire Pune - Game Jam Event</title>
+    <meta name="description" content="Campfire Pune - A game jam event at Newton School of Technology, Pune">
+    <style>
+        /* ============================================
+           CSS Reset & Base Styles
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-white: #ffffff;
+            --color-bg: #fbfbfd;
+            --color-border: #e9e9ef;
+            --color-text-primary: #1c1c1e;
+            --color-text-secondary: #6c6c70;
+            --color-accent: #0071e3;
+            --color-accent-hover: #005bb5;
+            --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 8px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-white);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ============================================
+           Navigation Bar
+           ============================================ */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 1rem 0;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .navbar-links a {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .navbar-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--color-text-primary);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* ============================================
+           Hero Section
+           ============================================ */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(180deg, var(--color-white) 0%, var(--color-bg) 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--color-bg);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-date-location {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-date-location span {
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        .btn-solid {
+            background: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            color: var(--color-white);
+        }
+
+        .btn-solid:hover {
+            background: var(--color-accent-hover);
+            border-color: var(--color-accent-hover);
+        }
+
+        /* ============================================
+           Common Section Styles
+           ============================================ */
+        .section {
+            padding: 6rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           About Section
+           ============================================ */
+        .about {
+            background: var(--color-white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-description h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .about-description p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .about-offers {
+            background: var(--color-bg);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+        }
+
+        .about-offers h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .about-offers ul li {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        .about-offers ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* ============================================
+           Schedule Section
+           ============================================ */
+        .schedule {
+            background: var(--color-bg);
+        }
+
+        .schedule-table-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--color-white);
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .schedule-table th {
+            background: var(--color-bg);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .schedule-table tr:nth-child(even) {
+            background: var(--color-bg);
+        }
+
+        .schedule-table tr:hover {
+            background: #f0f0f5;
+        }
+
+        .schedule-table td:first-child {
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        /* ============================================
+           Projects Section
+           ============================================ */
+        .projects {
+            background: var(--color-white);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-border);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .project-creators {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.5rem 0.875rem;
+            background: var(--color-white);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            transition: all 0.2s ease;
+            border: 1px solid var(--color-border);
+        }
+
+        .project-tag:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+            border-color: var(--color-accent);
+        }
+
+        /* ============================================
+           Memories Section
+           ============================================ */
+        .memories {
+            background: var(--color-bg);
+        }
+
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .memory-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .memory-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .memory-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* ============================================
+           Sponsors Section
+           ============================================ */
+        .sponsors {
+            background: var(--color-white);
+        }
+
+        .sponsors-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+        }
+
+        .sponsors-intro strong {
+            color: var(--color-accent);
+        }
+
+        .sponsors-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .sponsor-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--color-bg);
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .sponsor-chip:hover {
+            background: var(--color-white);
+            box-shadow: var(--shadow-md);
+            transform: scale(1.05);
+        }
+
+        /* ============================================
+           FAQ Section
+           ============================================ */
+        .faq {
+            background: var(--color-bg);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--color-accent);
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* ============================================
+           Credits / Team Section
+           ============================================ */
+        .credits {
+            background: var(--color-white);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--color-white);
+        }
+
+        .team-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .contact-info {
+            text-align: center;
+            padding: 2rem;
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+        }
+
+        .contact-info h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-white);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            border: 1px solid var(--color-border);
+            transition: all 0.2s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+            border-color: var(--color-accent);
+        }
+
+        /* ============================================
+           Footer
+           ============================================ */
+        .footer {
+            background: var(--color-bg);
+            padding: 4rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .footer p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: var(--color-accent);
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* ============================================
+           Responsive Design
+           ============================================ */
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--color-white);
+                flex-direction: column;
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+                gap: 1rem;
+            }
+
+            .navbar-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .project-card,
+            .memory-card,
+            .team-member {
+                padding: 1.5rem;
+            }
+
+            .sponsor-chip {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">🔥 Campfire Pune</a>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="navbar-links" id="navbarLinks">
+                <a href="#about">About</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#projects">Projects</a>
+                <a href="#memories">Memories</a>
+                <a href="#sponsors">Sponsors</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">Game Jam 2026</span>
+            <h1>Campfire Pune</h1>
+            <p class="hero-subtitle">Build games. Make memories. Ignite creativity.</p>
+            <p class="hero-date-location">
+                <span>📅 March 1, 2026</span>
+                <span>📍 Newton School of Technology, Pune</span>
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-solid">Explore Games</a>
+                <a href="https://campfire.hackclub.com/" target="_blank" rel="noopener" class="btn btn-outline">Global Event Page</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="about-grid">
+            <div class="about-description">
+                <h3>About Campfire Pune</h3>
+                <p>Campfire Pune is an exciting game jam event where developers, designers, and creative minds come together to build innovative games in just 12 hours. Hosted at Newton School of Technology, this event brings together the passion of the local game development community.</p>
+                <p>Whether you're an experienced developer or just starting out, Campfire Pune welcomes everyone. Our mission is to foster creativity, collaboration, and learning in a fun and supportive environment.</p>
+                <p>Join us for a day of coding, designing, and creating amazing games that you can share with the world!</p>
+            </div>
+            <div class="about-offers">
+                <h3>🎁 What we offered</h3>
+                <ul class="perks-list">
+                    <li>🕹️ Hands‑on GameMaker Studio workshop</li>
+                    <li>🧠 Friendly mentors & peer feedback</li>
+                    <li>🗳️ Peer voting to pick standout projects</li>
+                    <li>🎁 Prizes: Logitech gaming mice, free .xyz domains, Craftpix subs, stickers, tees, chocolates, meals & fun!</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section schedule" id="schedule">
+        <div class="section-header">
+            <h2 class="section-title">Schedule</h2>
+            <p class="section-subtitle">A day packed with creativity, coding, and collaboration</p>
+        </div>
+        <div class="schedule-table-wrapper">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Activity</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>8:30 AM – 9:30 AM</td>
+                        <td>Icebreaker Session</td>
+                        <td>Get to know your fellow participants</td>
+                    </tr>
+                    <tr>
+                        <td>9:30 AM – 10:00 AM</td>
+                        <td>Breakfast</td>
+                        <td>Start the day with delicious food</td>
+                    </tr>
+                    <tr>
+                        <td>10:00 AM – 12:00 PM</td>
+                        <td>GameMaker Workshop</td>
+                        <td>Learn game development fundamentals</td>
+                    </tr>
+                    <tr>
+                        <td>12:00 PM – 1:00 PM</td>
+                        <td>Lunch Break</td>
+                        <td>Refuel with delicious food</td>
+                    </tr>
+                    <tr>
+                        <td>1:00 PM – 5:00 PM</td>
+                        <td>Game Development & Building Session</td>
+                        <td>Build your amazing games</td>
+                    </tr>
+                    <tr>
+                        <td>5:00 PM – 6:00 PM</td>
+                        <td>Shipping Your Game: GitHub & itch.io Workshop</td>
+                        <td>Learn how to publish your game</td>
+                    </tr>
+                    <tr>
+                        <td>6:00 PM – 8:00 PM</td>
+                        <td>Peer Voting, Winner Announcements & Prize Distribution</td>
+                        <td>Celebrate the winners and share your work</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section projects" id="projects">
+        <div class="section-header">
+            <h2 class="section-title">🔥 The Projects</h2>
+            <p class="section-subtitle">All games are open-sourced on GitHub and playable on itch.io. Built with passion in under 12 hours.</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">⛏️</div>
+                <h3 class="project-title">The mines</h3>
+                <p class="project-creators">by Swar, eeshan & Saumitra</p>
+                <p class="project-description">Underground survival adventure crafted during the jam. Dig deep, collect resources, and survive the darkness below.</p>
+                <div class="project-tags">
+                    <a href="https://kingbro6.itch.io/the-mines" target="_blank" rel="noopener" class="project-tag">🎮 itch.io</a>
+                    <a href="https://github.com/MrHyplex9511/The-Mines" target="_blank" rel="noopener" class="project-tag">🐙 GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🌊</div>
+                <h3 class="project-title">Under the surface</h3>
+                <p class="project-creators">by Keval & kaushik</p>
+                <p class="project-description">Explore oceanic depths and uncover secrets. Dive into an underwater world filled with mystery and wonder.</p>
+                <div class="project-tags">
+                    <a href="https://bidtoit1919.itch.io/underthesurface" target="_blank" rel="noopener" class="project-tag">🎮 itch.io</a>
+                    <a href="https://github.com/bidtoit1919/UnderTheSea---Campfire-Pune-Project" target="_blank" rel="noopener" class="project-tag">🐙 GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🧩</div>
+                <h3 class="project-title">Under the surface</h3>
+                <p class="project-creators">by Khushwant</p>
+                <p class="project-description">A unique take — solo dev, atmospheric puzzle game. A meditative experience about depth and discovery.</p>
+                <div class="project-tags">
+                    <a href="https://khushwant.itch.io/under-the-surface" target="_blank" rel="noopener" class="project-tag">🎮 itch.io</a>
+                    <a href="https://github.com/khushwantmahajan/under-the-surface" target="_blank" rel="noopener" class="project-tag">🐙 GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🐠</div>
+                <h3 class="project-title">Life Under water</h3>
+                <p class="project-creators">by Riissit & yusuf</p>
+                <p class="project-description">Colorful marine ecosystem, build & survive. Create your underwater paradise and protect it from threats.</p>
+                <div class="project-tags">
+                    <a href="https://riissitsurana4.itch.io/life-under-water" target="_blank" rel="noopener" class="project-tag">🎮 itch.io</a>
+                    <a href="https://github.com/notyourcto/beneath-the-surface" target="_blank" rel="noopener" class="project-tag">🐙 GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🧘</div>
+                <h3 class="project-title">Breathe deeper</h3>
+                <p class="project-creators">by nimit & shripad</p>
+                <p class="project-description">Meditative platformer about calm and focus. Find your inner peace through serene gameplay.</p>
+                <div class="project-tags">
+                    <a href="https://agentrowlet.itch.io/breathe-deeper" target="_blank" rel="noopener" class="project-tag">🎮 itch.io</a>
+                    <a href="https://github.com/shripad-rj/breathedeeper" target="_blank" rel="noopener" class="project-tag">🐙 GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section memories" id="memories">
+        <div class="section-header">
+            <h2 class="section-title">Memories</h2>
+            <p class="section-subtitle">Moments from Campfire Pune that we'll cherish forever</p>
+        </div>
+        <div class="memories-grid">
+            <div class="memory-card">
+                <img src="images/nst.jpg" alt="Memory from Campfire Pune" class="memory-image">
+            </div>
+            <div class="memory-card">
+                <img src="images/screen.jpg" alt="Memory from Campfire Pune" class="memory-image">
+            </div>
+            <div class="memory-card">
+                <img src="images/stick.jpg" alt="Memory from Campfire Pune" class="memory-image">
+            </div>
+            <div class="memory-card">
+                <img src="images/team.jpg" alt="Memory from Campfire Pune" class="memory-image">
+            </div>
+        </div>
+    </section>
+
+    <section class="section sponsors" id="sponsors">
+        <div class="section-header">
+            <h2 class="section-title">Our Sponsors ❤️</h2>
+        </div>
+        <p class="sponsors-intro">From food to prizes to domains — you helped us turn ideas into real, playable games. We're beyond <strong>grateful!</strong></p>
+        <div class="sponsors-list">
+            <span class="sponsor-chip">Hack Club (Fiscal Sponsor)</span>
+            <span class="sponsor-chip">Newton School of Technology (Venue & Food)</span>
+            <span class="sponsor-chip">XYZ (Free Domains)</span>
+            <span class="sponsor-chip">Craftpix (1-Year Subs)</span>
+            <span class="sponsor-chip">Canva (Pro Access)</span>
+        </div>
+    </section>
+
+    <section class="section faq" id="faq">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Got questions? We've got answers!</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">I want to contact the Campfire Pune team.</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Best way: join Hack Club’s Slack and hop into the #pune channel.<br><br>Second best: Instagram - @campfire_pune</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">I lost my participation certificate.</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Contact the PoC: open.ronak@gmail.com with the subject: [IMP] I have lost my Campfire Pune Participation Certificate.<br><br>Include your full name and email used at signup.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">How do I join future events in Pune by Hack Club?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Join our Slack and follow the #pune channel for announcements.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">More questions?</button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">• Slack • Instagram • Email</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section credits" id="credits">
+        <div class="section-header">
+            <h2 class="section-title">Meet the Team</h2>
+            <p class="section-subtitle">The amazing organizers who made Campfire Pune possible</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-avatar">👨‍💻</div>
+                <h3 class="team-name">Rissit Surrana</h3>
+                <p class="team-role">Organizer</p>
+            </div>
+            <div class="team-member">
+                <div class="team-avatar">👨‍🎨</div>
+                <h3 class="team-name">Yusuf Shaikeh</h3>
+                <p class="team-role">Organizer</p>
+            </div>
+            <div class="team-member">
+                <div class="team-avatar">🚀</div>
+                <h3 class="team-name">Ronak Desai</h3>
+                <p class="team-role">Lead Organizer / PoC</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <h4>Get in Touch</h4>
+            <div class="contact-links">
+                <a href="https://instagram.com/campfire_pune" target="_blank" rel="noopener" class="contact-link">📷 IG (@campfire_pune)</a>
+                <a href="mailto:open.ronak@gmail.com" class="contact-link">📧 open.ronak@gmail.com</a>
+                <a href="https://slack.hackclub.com/" target="_blank" rel="noopener" class="contact-link">💬 Join Slack</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <h4>Thank You for Being Part of Campfire Pune! 🔥</h4>
+            <p>This event wouldn't have been possible without our amazing participants, sponsors, and volunteers. See you at the next one!</p>
+            <div class="footer-bottom">
+                <p>© 2026 Campfire Pune. Made with ❤️ by the <a href="https://www.linkedin.com/in/dotcomronak" target="_blank" rel="noopener">@dotcomronak</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const navbarLinks = document.getElementById('navbarLinks');
+            navbarLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.navbar-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarLinks = document.getElementById('navbarLinks');
+                navbarLinks.classList.remove('active');
+            });
+        });
+
+        // Toggle FAQ accordion
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Toggle current item
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Smooth scroll for navigation links (for older browsers that don't support CSS smooth scroll)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 16px rgba(0, 0, 0, 0.08)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
