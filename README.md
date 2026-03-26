@@ -14,11 +14,3 @@ This website is built entirely with:
 * Vanilla **JavaScript** (Smooth scrolling, mobile menu toggling, FAQ accordion)
 * Vibe-Coded? Yes, 60-70%
 No heavy frameworks—just clean, lightweight, and responsive code!
-
-## 📂 Project Structure
-```text
-campfire_pune/
-├── images/             # Event photos (nst.jpg, screen.jpg, etc.)
-├── index.html          # Main website file
-
-README.md           # Project documentation
